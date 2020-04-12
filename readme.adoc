@@ -9,8 +9,8 @@ model of development. The use of an entirely separate process for a REPL,
 instead of using Vim's terminal, is to decouple the text editor component of
 Vim from terminal emulation, allowing the developer to choose a more refined
 and specialised tool for terminal emulation than what Vim may provide. A server
-is used for the flexibility it has proven to enable, based on the success of
-similar projects such as SLIME.
+is used for the flexibility that such an approach has proven to enable, based
+on the success of similar projects such as SLIME.
 
 Usage
 -----
@@ -23,6 +23,9 @@ The important functions that the plugin defines include:
 			   server as it currently exists.
 * `SendChCurrLineEval()`:: Send the line under the cursor to the server
 			   (thereby the target pane) and evaluate it.
+
+The user can set default host, port, and tmux pane target through the variables
+`g:stp_host`, `g:stp_port`, and `g:stp_target` respectively.
 
 Installation
 ------------
