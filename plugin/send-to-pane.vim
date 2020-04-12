@@ -1,11 +1,11 @@
 ",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,
 
-let s:path = expand('<sfile>:p:h')
+let s:path = expand('<sfile>:p:h:h')
 
 ",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,
 
 function StartServer()
-	let server_command = ['python3', s:path . '/send-to-pane.py']
+	let server_command = ['python3', s:path . '/server/send-to-pane.py']
 	let arglist = []
 	if exists("g:stp_host")
 		call extend(arglist, ["-n", g:stp_host])
@@ -16,7 +16,6 @@ function StartServer()
 	if exists("g:stp_target")
 		call extend(arglist, (["-t", g:stp_target])
 	endif
-	echo server_command + arglist
 	let g:stp_job = job_start(server_command + arglist)
 	"must maintain reference to job lest it be garbage collected
 endfunction
@@ -62,11 +61,7 @@ endfunction
 
 ",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,
 
-map <C-a> :call StartServerConnect()<CR>
 
-nmap <C-CR> :call SendChCurrLineEval()<CR>j
-
-nmap _x :call ChannelClose()<CR>
 
 ",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,
 " " " " " Old function to choose pane from tmux through vim. A LOT OF EFFORT!!
