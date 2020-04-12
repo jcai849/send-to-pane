@@ -22,15 +22,15 @@ endfunction
 
 function StartServerConnect()
 	 call StartServer()
-	 if exists("g:stp_port")
-	    let port = g:stp_port
-	 else
-	    let port = 7654
-	 endif
 	 if exists("g:stp_host")
 	    let host = g:stp_host
 	 else
 	    let host = "localhost"
+	 endif
+	 if exists("g:stp_port")
+	    let port = g:stp_port
+	 else
+	    let port = 7654
 	 endif
 	 let s:channel = ch_open(host . ":" . port, {"mode": "raw"})
 	 while type(ch_info(s:channel)) == 0  	    "hack; channel info turns from num to dict when connected
