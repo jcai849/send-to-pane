@@ -15,7 +15,7 @@ similar projects such as SLIME.
 Usage
 -----
 
-The important functions that the package defines include:
+The important functions that the plugin defines include:
 
 * `StartServerConnect()`:: Start the server, by default interactively choosing
 			   the target pane within tmux.
@@ -23,10 +23,6 @@ The important functions that the package defines include:
 			   server as it currently exists.
 * `SendChCurrLineEval()`:: Send the line under the cursor to the server
 			   (thereby the target pane) and evaluate it.
-
-The most important next piece of development is to define idiomatic Vim
-bindings, possibly including new functions to send more than just the current
-line, such as sending code blocks, possibly as defined by other functions.
 
 Installation
 ------------
@@ -59,7 +55,7 @@ optional arguments:
                         Tmux pane target, of the standard form. Defaults to
                         interactive pane choice if unspecified.
 
-Start from Vim with the vim plugin send-to-pane. Example command line usage:
+Enabled to start from Vim with the Vim plugin send-to-pane. Example command line usage:
 	send-to-pane -t =0:0.%1
 	send-to-pane -t .%5
 	send-to-pane -t =sessionname:.%4
@@ -70,7 +66,8 @@ Next Steps
 
 The plugin has a great deal of potential. Future development of high importance includes:
 
-. Idiomatic Vim bindings, including more than just the current line.
+. Automatic server kill on Vim exit
+. Idiomatic Vim bindings, including sending more than just the current line.
 . The ability to re-determine target pane
 . Self-enclosed documentation
 . Server upgrade to allow multiple connections
