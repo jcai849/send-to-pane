@@ -44,7 +44,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="send-to-pane",
                                      description="Start a server to send received commands to a specified tmux pane",
                                      formatter_class=argparse.RawDescriptionHelpFormatter,
-                                     epilog="Start from vim with the vim plugin send-to-pane. Example command line usage:\n\tsend-to-pane -t =0:0.%1\n\tsend-to-pane -t .%5\n\tsend-to-pane -t =sessionname:.%4")
+                                     epilog="Enabled to start from Vim with the Vim plugin send-to-pane. Example command line usage:\n\tsend-to-pane -t =0:0.%1\n\tsend-to-pane -t .%5\n\tsend-to-pane -t =sessionname:.%4")
     parser.add_argument('-n', '--hostname', default='',
                         help="Server hostname. Defaults to localhost if unspecified.")
     parser.add_argument('-p', '--port', default='7654',
