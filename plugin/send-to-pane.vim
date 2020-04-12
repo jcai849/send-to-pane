@@ -60,17 +60,3 @@ function SendChCurrLineEval()
 endfunction
 
 ",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,
-
-
-
-",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,
-" " " " " Old function to choose pane from tmux through vim. A LOT OF EFFORT!!
-" function SetPaneInter()
-" call  system('tmux choose-tree "set-environment inferiorproc ''%%''"')
-" let msg = system('tmux show-environment inferiorproc')	
-" let target =  matchstr(msg, '=\(.*=\)\@!.*')
-" py3 'import subprocess; subprocess.Popen(["python3", "~/scratch/send-to-pane.py"])'
-" let args = ['python3', '~/scratch/send-to-pane.py', '-t', target]
-" let job = job_start(args)
-" endfunction
-",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,",,
