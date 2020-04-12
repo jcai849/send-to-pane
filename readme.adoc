@@ -1,0 +1,79 @@
+Send to Pane
+============
+
+This plugin allows Vim to launch a forwarding server to tmux, and send text to
+the server. The primary motivation for this is to enable high-speed evaluation
+of a script during it's development, on a REPL running in another pane. This
+avoids the ``Copy; Switch Pane; Paste; Switch Back'' portion of the CSPPSBREPL
+model of development. The use of an entirely separate process for a REPL,
+instead of using Vim's terminal, is to decouple the text editor component of
+Vim from terminal emulation, allowing the developer to choose a more refined
+and specialised tool for terminal emulation than what Vim may provide. A server
+is used for the flexibility it has proven to enable, based on the success of
+similar projects such as SLIME.
+
+Usage
+-----
+
+The important functions that the package defines include:
+
+* `StartServerConnect()`:: Start the server, by default interactively choosing
+			   the target pane within tmux.
+* `ChannelClose()`:: 	   Close the connection to the server, also killing the
+			   server as it currently exists.
+* `SendChCurrLineEval()`:: Send the line under the cursor to the server
+			   (thereby the target pane) and evaluate it.
+
+The most important next piece of development is to define idiomatic Vim
+bindings, possibly including new functions to send more than just the current
+line, such as sending code blocks, possibly as defined by other functions.
+
+Installation
+------------
+
+Navigate to `~/.vim/plugin` and clone this repository into either that
+directory or a subdirectory.
+
+Implementation
+--------------
+Vim launches the server as a background job, then user-defined data is sent
+through the channel.
+
+The server is a python 3 socket stream server, using an INET ipv4 address
+space. The server forwards received data as keys to a target tmux pane. By
+default, the pane is prompted for and determined through a choose-tree
+internally within tmux, but can be pre-specified. The server can be launched
+independently, and gives the following help:
+
+--------------------------------------------------------------------------------
+usage: send-to-pane [-h] [-n HOSTNAME] [-p PORT] [-t TARGET]
+
+Start a server to send received commands to a specified tmux pane
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -n HOSTNAME, --hostname HOSTNAME
+                        Server hostname. Defaults to localhost if unspecified.
+  -p PORT, --port PORT  Server port. Defaults to 7654.
+  -t TARGET, --target TARGET
+                        Tmux pane target, of the standard form. Defaults to
+                        interactive pane choice if unspecified.
+
+Start from Vim with the vim plugin send-to-pane. Example command line usage:
+	send-to-pane -t =0:0.%1
+	send-to-pane -t .%5
+	send-to-pane -t =sessionname:.%4
+--------------------------------------------------------------------------------
+
+Next Steps
+----------
+
+The plugin has a great deal of potential. Future development of high importance includes:
+
+. Idiomatic Vim bindings, including more than just the current line.
+. The ability to re-determine target pane
+. Self-enclosed documentation
+. Server upgrade to allow multiple connections
+. Remote host connection - this may actually already be working, it just hasn't
+  been tested yet
+. Server-side language-specific processing
