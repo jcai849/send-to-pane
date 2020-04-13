@@ -15,17 +15,28 @@ on the success of similar projects such as SLIME.
 Usage
 -----
 
-The important functions that the plugin defines include:
+[horizontal]
++<leader>s+:: starts the connection and prompts for the tmux target pane.
+	footnote:[by default the leader is the \ key]
+`<leader>c`:: acts as an operator to send arbitrary text objects to the
+	connection.
+`<leader>c<enter>`:: forces evaluation.
+`<leader>x`:: closes the connection manually.
 
-* `StartServerConnect()`:: Start the server, by default interactively choosing
-			   the target pane within tmux.
-* `ChannelClose()`:: 	   Close the connection to the server, also killing the
-			   server as it currently exists.
-* `SendChCurrLineEval()`:: Send the line under the cursor to the server
-			   (thereby the target pane) and evaluate it.
+`<leader>c` behaves in a similar manner to other operators such as `d`, `y`,
+etc. Standard idioms include:
+
+[horizontal]
+++<leader>cc++:: sends the current line.
+`<leader>cip`:: sends the current paragraph.
+`<leader>cw`:: sends until the next word.
+
+`<leader>c` also works with visual selection; select the text to send, then
+`<leader>c`.
 
 The user can set default host, port, and tmux pane target through the variables
-`g:stp_host`, `g:stp_port`, and `g:stp_target` respectively.
+`g:stp_host`, `g:stp_port`, and `g:stp_target` respectively, bypassing target
+pane prompting.
 
 Installation
 ------------
@@ -67,13 +78,14 @@ Enabled to start from Vim with the Vim plugin send-to-pane. Example command line
 Next Steps
 ----------
 
-The plugin has a great deal of potential. Future development of high importance includes:
+Future development of high importance includes:
 
-. Automatic server kill on Vim exit
-. Idiomatic Vim bindings, including sending more than just the current line.
-. The ability to re-determine target pane
-. Self-enclosed documentation
-. Server upgrade to allow multiple connections
+. Automatic server kill when re-specifying pane (`exists("s:channel")`),
+	removing any need to manually kill server.
+. Automatic evaluation of text not ending in newline characters, removing any
+	need to manually evaluate.
+. De-generalise mapping code for clarity.
+. Server upgrade to allow multiple connections.
 . Remote host connection - this may actually already be working, it just hasn't
-  been tested yet
+  been tested yet.
 . Server-side language-specific processing
