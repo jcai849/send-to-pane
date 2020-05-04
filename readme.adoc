@@ -86,6 +86,7 @@ Future development of high importance includes:
 	need to manually evaluate.
 . De-generalise mapping code for clarity.
 . Server upgrade to allow multiple connections.
+. Server improvements to facilitate communication with LSP
 . Remote host connection - this may actually already be working, it just hasn't
   been tested yet.
 . Server-side language-specific processing
